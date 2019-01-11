@@ -30,6 +30,9 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+	pred_per_k = sigmoid(X * all_theta');
+	[k_prop, k_pred] = max(pred_per_k, [], 2);
+	p = k_pred;
 
 
 
