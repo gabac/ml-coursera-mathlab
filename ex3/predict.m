@@ -25,6 +25,28 @@ p = zeros(size(X, 1), 1);
 
 
 
+	% add ones to X
+	X_ones = [ones(m,1), X];
+
+	% calculate a2
+	z2 = X_ones * Theta1';
+	a2 = sigmoid(z2);
+
+	% add a0 to layer
+	m_a2 = size(a2, 1);
+	a2 = [ones(m_a2,1), a2];
+
+	% transpose a2 to use as input
+	%a2 = a2';
+
+	% calculate a3 = h_theta
+	z3 = a2 * Theta2';
+	a3 = sigmoid(z3);
+
+	%return prediction
+	[k_prop, k_pred] = max(a3, [], 2);
+	p = k_pred;
+
 
 
 
