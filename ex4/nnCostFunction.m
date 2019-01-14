@@ -65,7 +65,9 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
-	% part 1
+	%%%% part 1 %%%%%
+	a1 = [ones(m, 1), X];
+
 	% add ones to X
 	X_ones = [ones(m,1), X];
 
@@ -89,6 +91,18 @@ Theta2_grad = zeros(size(Theta2));
 
 	J_reg = (lambda/(2*m)) .* (sum(sum(Theta1(:, 2:end).^2, 2)) + sum(sum(Theta2(:, 2:end).^2, 2)));
 	J = (1/m) * sum(sum((-y .* log(a3) - (1 - y) .* log(1-a3)))) + J_reg;
+
+
+	%%%% part2 back prop %%%%
+
+	delta3 = a3 - y;
+	delta2 = delta3 * Theta2(:, 2:end) .* sigmoidGradient(z2);
+
+	Theta1_grad = 1/m * delta2' * a1;
+	Theta2_grad = 1/m * delta3' * a2;
+
+
+
 
 
 
