@@ -101,8 +101,13 @@ Theta2_grad = zeros(size(Theta2));
 	Theta1_grad = 1/m * delta2' * a1;
 	Theta2_grad = 1/m * delta3' * a2;
 
-
-
+	%%%% part3 reg %%%%
+	Theta1_r = Theta1;
+	Theta1_r(:,1) = 0;
+	Theta2_r = Theta2;
+	Theta2_r(:,1) = 0;
+	Theta1_grad = Theta1_grad + (lambda/m) * Theta1_r;
+	Theta2_grad = Theta2_grad + (lambda/m) * Theta2_r;
 
 
 
