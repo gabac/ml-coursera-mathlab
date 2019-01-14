@@ -65,6 +65,31 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
+	% part 1
+	% add ones to X
+	X_ones = [ones(m,1), X];
+
+	% calculate a2
+	z2 = X_ones * Theta1';
+	a2 = sigmoid(z2);
+
+	% add a0 to layer
+	m_a2 = size(a2, 1);
+	a2 = [ones(m_a2,1), a2];
+
+	% transpose a2 to use as input
+	%a2 = a2';
+
+	% calculate a3 = h_theta
+	z3 = a2 * Theta2';
+	a3 = sigmoid(z3);
+
+	yd = eye(num_labels);
+	y = yd(y,:);
+
+	J_reg = (lambda/(2*m)) .* (sum(sum(Theta1(:, 2:end).^2, 2)) + sum(sum(Theta2(:, 2:end).^2, 2)));
+	J = (1/m) * sum(sum((-y .* log(a3) - (1 - y) .* log(1-a3)))) + J_reg;
+
 
 
 
