@@ -25,7 +25,7 @@ J = (1/m) * (-y' * log(hypo) - (1-y)' * log(1-hypo)) + (lambda/(2*m)) * (theta(2
 
 gradReg = (lambda/m)*theta;
 gradReg(1) = 0;
-grad = (1/m) * X' * (hypo - y) + gradReg;
+grad = (1/m) * X' * (X * theta - y + gradReg;
 
 
 
