@@ -26,6 +26,24 @@ sigma = 0.3;
 
 
 
+	values = [0.01, 0,03, 0.1, 0.3, 1, 3, 10, 30];
+
+	for i=1:numel(values) %C
+	    for j=1:numel(values) %sigma
+	        model = svmTrain(X, y, values(i), @(x1, x2)gaussianKernel(x1, x2, values(j)));
+	        predict = svmPredict(model, Xval);
+	        predictions(i,j) = mean(double(predict ~= yval));
+	    end
+	end
+
+
+	[colmin, rowindex] = min(predictions);
+	[minerror, index] = min(colmin);
+
+	C = values(rowindex(index));
+	sigma = values(index);
+
+
 
 
 
